@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List des recettes {% endblock %}
+
+{% block body %}
+<div  class="recipe" >
+    <div class="titles"><h2>List des recettes</h2></div>
+    <table class="table table-striped table-bordered table-hover"style="width:100%" id="recipetable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Sous titre</th>
+                <th>Ingrédients</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recipe in recipes %}
+            <tr>
+                <td>{{ recipe.id }}</td>
+                <td>{{ recipe.titre }}</td>
+                <td>{{ recipe.sousTitre }}</td>
+                <td>{{ recipe.ingredients ? recipe.ingredients|join(',') : '' }}</td>
+                <td>
+                    <a aria-hidden="true" class="fa fa-eye" href="{{ path('recipe_show', {'id': recipe.id}) }}" title="Voir"></a>
+                    <a aria-hidden="true" class="fa fa-pencil"  href="{{ path('recipe_edit', {'id': recipe.id}) }}" title="Modifier"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('recipe_new') }}">Créer une nouvelle recette</a>
+    </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script>
+$(document).ready(function() {
+var dataTable = $('#recipetable').DataTable({
+    dom: 'Bfrtip',
+    searching: true,
+    pagingType: 'full_numbers',
+    language: {
+        lengthMenu : "Afficher _MENU_ entrées",
+        zeroRecords : "Aucun résultat trouvé",
+        info: "Afficher la page _PAGE_ sur _PAGES_",
+        infoEmpty: "",
+        infoFiltered: "(filtré de _MAX_ total records)",
+        buttons: {
+            pageLength: ' Afficher %d'
+        }
+    },
+    lengthMenu: [[ 6, 12, 18, -1], [6, 12, 18, "All"]],
+    buttons: [
+        {
+            extend: "pageLength",
+            className: "fa fa-arrows-v",
+        }]
+});
+});
+</script>
+{% endblock %}

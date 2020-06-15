@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Recipe{% endblock %}
+
+{% block body %}
+<div  class="recipe" >
+    <div class="titles"><h2>Modifier la recette </h2></div>
+
+    {{ include('recipe/_form.html.twig', {'button_label': 'Mofdifier'}) }}
+
+    <a class="btn btn-primary backButton" href="{{ path('recipe_index') }}">Retour à la liste</a>
+
+    {{ include('recipe/_delete_form.html.twig') }}
+</div>
+{% endblock %}
