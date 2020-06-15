@@ -1,0 +1,14 @@
+CookingRecipeApi est une API de recettes de cuisine sur Symfony 5, dans laquelle on peut ajouter / lister
+/ modifier / supprimer nos propres recettes. La librairie Api Platform est utilisée. 
+
+Une recette a un titre(Obligatoire), un sous titre(optionnel) et une liste d'ingrédients.
+
+Sur la page d'index, nous avons une liste de toutes les recettes de cuisines, des boutons associés à 
+chaque action sont mis à disposition pour ajouter, supprimer ou modifier une recette. 
+
+On peut trouver les actions(POST, GET, DELETE...) de l'api sur l'url "/api"
+
+
+
+
+
